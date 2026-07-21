@@ -1,0 +1,26 @@
+[
+  {
+    "id": "t-1",
+    "name": "Sarah Jenkins",
+    "role": "Homeowner",
+    "content": "The attention to detail in Aliens Eco Valley is simply unmatched. From the seamless buying process to the stunning modern architecture, they have exceeded our expectations.",
+    "rating": 5,
+    "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    "id": "t-2",
+    "name": "Michael Chen",
+    "role": "Real Estate Investor",
+    "content": "I've invested in multiple properties over the years, but the transparency and premium quality offered here stand out. A fantastic return on investment.",
+    "rating": 5,
+    "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    "id": "t-3",
+    "name": "Priya Sharma",
+    "role": "Resident",
+    "content": "Living at The Hub Residences feels like staying in a 5-star resort every day. The amenities and the community are fantastic.",
+    "rating": 4,
+    "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+  }
+]

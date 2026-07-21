@@ -1,0 +1,38 @@
+[
+  {
+    "id": "am-1",
+    "title": "Swimming Pool",
+    "icon": "FaSwimmingPool",
+    "description": "Olympic-sized swimming pool with temperature control."
+  },
+  {
+    "id": "am-2",
+    "title": "Fitness Center",
+    "icon": "FaDumbbell",
+    "description": "Fully equipped gymnasium with personal trainers."
+  },
+  {
+    "id": "am-3",
+    "title": "Clubhouse",
+    "icon": "FaGlassCheers",
+    "description": "Exclusive clubhouse for social gatherings and events."
+  },
+  {
+    "id": "am-4",
+    "title": "24/7 Security",
+    "icon": "FaShieldAlt",
+    "description": "Round-the-clock surveillance and manned security."
+  },
+  {
+    "id": "am-5",
+    "title": "Landscaped Gardens",
+    "icon": "FaTree",
+    "description": "Beautifully maintained green spaces and walking trails."
+  },
+  {
+    "id": "am-6",
+    "title": "Smart Home",
+    "icon": "FaHome",
+    "description": "Integrated smart home automation systems."
+  }
+]

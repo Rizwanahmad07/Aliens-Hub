@@ -1,0 +1,50 @@
+[
+  {
+    "id": "g-01",
+    "url": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    "category": "Exterior",
+    "title": "Modern Villa Front"
+  },
+  {
+    "id": "g-02",
+    "url": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    "category": "Exterior",
+    "title": "Luxury Poolside"
+  },
+  {
+    "id": "g-03",
+    "url": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
+    "category": "Interior",
+    "title": "Spacious Living Room"
+  },
+  {
+    "id": "g-04",
+    "url": "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80",
+    "category": "Interior",
+    "title": "Minimalist Kitchen"
+  },
+  {
+    "id": "g-05",
+    "url": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    "category": "Amenities",
+    "title": "Clubhouse Lobby"
+  },
+  {
+    "id": "g-06",
+    "url": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+    "category": "Exterior",
+    "title": "High-rise Night View"
+  },
+  {
+    "id": "g-07",
+    "url": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    "category": "Interior",
+    "title": "Master Bedroom"
+  },
+  {
+    "id": "g-08",
+    "url": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80",
+    "category": "Amenities",
+    "title": "Community Park"
+  }
+]
