@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Container } from '../../components/Common/Container';
-import { SectionHeading } from '../../components/Common/SectionHeading';
-import { PrimaryButton } from '../../components/Buttons/PrimaryButton';
-import { SecondaryButton } from '../../components/Buttons/SecondaryButton';
 import { AmenitiesSlider } from '../../components/Amenities/AmenitiesSlider';
 import { MasterPlan } from '../../components/MasterPlan/MasterPlan';
 import { GallerySection } from '../../components/Gallery/GallerySection';
 import { LocationSection } from '../../components/Location/LocationSection';
 
 // Mock Data
-import projectsData from '../../data/projects.json';
 import heroImage from '../../assets/images/Header/hublanding_banner4_desktop.avif';
 import whyUsImage from '../../assets/images/whyus/New_Jubilee_Hills_Aboutus.webp';
 
@@ -31,7 +27,6 @@ import areaMapImage from '../../assets/images/AreaMap/Map.jpg';
 import areaMapBg from '../../assets/images/AreaMap/sec3bg.avif';
 
 export const Home: React.FC = () => {
-  const featuredProjects = projectsData.filter(p => p.featured);
   const [openAccordion, setOpenAccordion] = useState<string | null>('Major Landmarks');
 
   const locationAccordionData = [
