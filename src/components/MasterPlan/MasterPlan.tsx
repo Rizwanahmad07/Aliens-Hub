@@ -78,21 +78,23 @@ export const MasterPlan: React.FC = () => {
   return (
     <section className="flex flex-col">
       {/* Top Banner: Unlock plot prices */}
-      <div className="relative w-full h-[250px] md:h-[300px]">
-        <img src={unlockBanner} alt="Unlock plot prices" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center pt-8">
-          <h2 className="text-white text-5xl md:text-7xl font-bold italic font-serif mb-12 drop-shadow-lg">
+      <div className="relative w-full min-h-[300px] md:h-[320px] py-8 md:py-12 flex flex-col items-center justify-center bg-black/40">
+        <img src={unlockBanner} alt="Unlock plot prices" className="absolute inset-0 w-full h-full object-cover z-0" />
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="relative z-20 flex flex-col items-center justify-center text-center w-full px-4">
+          <h2 className="text-white text-3xl sm:text-5xl md:text-7xl font-bold italic font-serif mb-6 md:mb-10 drop-shadow-lg">
             Unlock plot prices
           </h2>
           
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8 px-4 w-full max-w-5xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 px-2 sm:px-4 w-full max-w-5xl">
             {['< 300 Sq Yards', '300 - 500 Sq Yards', '> 500 Sq Yards'].map((label, idx) => (
               <button 
                 key={idx}
-                className="flex flex-col items-center justify-center gap-2 border border-white/40 bg-black/20 backdrop-blur-md px-6 py-4 md:px-10 md:py-6 rounded-md hover:bg-black/40 transition-colors flex-1 max-w-[280px]"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-enquire-modal'))}
+                className="flex flex-col items-center justify-center gap-1.5 border border-white/40 bg-black/35 backdrop-blur-md px-4 py-3 md:px-8 md:py-5 rounded-md hover:bg-black/55 transition-colors w-full"
               >
-                <span className="text-white font-bold text-sm md:text-lg whitespace-nowrap">{label}</span>
-                <FaLock className="text-white text-xl md:text-2xl mt-1 opacity-90" />
+                <span className="text-white font-bold text-sm sm:text-base md:text-lg whitespace-nowrap">{label}</span>
+                <FaLock className="text-white text-base md:text-2xl mt-0.5 opacity-90" />
               </button>
             ))}
           </div>
@@ -100,13 +102,74 @@ export const MasterPlan: React.FC = () => {
       </div>
 
       {/* Main Section */}
-      <div className="bg-white py-16 md:py-20">
+      <div className="bg-white py-12 md:py-20">
         <Container>
-          <h2 className="text-center text-[28px] md:text-[36px] font-serif uppercase tracking-widest text-gray-900 mb-12">
+          <h2 className="text-center text-[24px] sm:text-[28px] md:text-[36px] font-serif uppercase tracking-widest text-gray-900 mb-8 md:mb-12">
             Master Plan & Layout
           </h2>
 
-          <div className="relative w-full max-w-6xl mx-auto h-[500px] md:h-[600px] lg:h-[700px] shadow-2xl overflow-hidden border border-gray-100 bg-white group">
+          {/* MOBILE VIEW (Stack & Scrollable Tabs) */}
+          <div className="block md:hidden space-y-6">
+            {/* Phase Selector Horizontal Tabs */}
+            <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-none snap-x px-1">
+              <button
+                onClick={() => setActiveLayoutId(null)}
+                className={`flex-shrink-0 px-4 py-2 text-xs font-bold rounded-lg border transition-colors snap-start ${
+                  activeLayoutId === null
+                    ? 'bg-black text-white border-black'
+                    : 'bg-gray-100 text-gray-700 border-gray-200'
+                }`}
+              >
+                Main Overview
+              </button>
+              {layoutsData.map((layout) => (
+                <button
+                  key={layout.id}
+                  onClick={() => setActiveLayoutId(layout.id)}
+                  className={`flex-shrink-0 px-4 py-2 text-xs font-bold rounded-lg border transition-colors snap-start ${
+                    activeLayoutId === layout.id
+                      ? 'bg-black text-white border-black'
+                      : 'bg-gray-100 text-gray-700 border-gray-200'
+                  }`}
+                >
+                  {layout.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Layout Map Display */}
+            <div className="rounded-xl overflow-hidden border border-gray-200 bg-[#fafafa] shadow-md relative min-h-[250px] flex items-center justify-center p-2">
+              <img
+                src={activeLayout ? activeLayout.mainImage : MasterplanMain}
+                alt={activeLayout ? activeLayout.name : "Masterplan Main"}
+                className="w-full h-auto max-h-[350px] object-contain rounded-lg"
+              />
+              {activeLayout && (
+                <button 
+                  onClick={() => setActiveLayoutId(null)}
+                  className="absolute top-4 left-4 bg-black/70 text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md"
+                >
+                  <FaChevronLeft size={10} /> Back
+                </button>
+              )}
+            </div>
+
+            {/* Layout Details on Mobile */}
+            {activeLayout && (
+              <div className="bg-gray-900 text-white p-5 rounded-xl space-y-4 shadow-lg">
+                <h3 className="text-xl font-bold">{activeLayout.name}</h3>
+                <p className="text-gray-300 text-xs leading-relaxed">{activeLayout.description}</p>
+                {activeLayout.thumbnail && (
+                  <div className="border border-white/20 rounded-lg overflow-hidden mt-3 max-w-[200px]">
+                    <img src={activeLayout.thumbnail} alt={`${activeLayout.name} Thumbnail`} className="w-full h-auto object-cover" />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* DESKTOP VIEW (Interactive Overlay) */}
+          <div className="hidden md:block relative w-full max-w-6xl mx-auto h-[600px] lg:h-[700px] shadow-2xl overflow-hidden border border-gray-100 bg-white group">
             
             <AnimatePresence mode="wait">
               {!activeLayout ? (
@@ -122,16 +185,16 @@ export const MasterPlan: React.FC = () => {
                   <img 
                     src={MasterplanMain} 
                     alt="Masterplan Main Layout" 
-                    className="w-full h-full object-contain mix-blend-multiply opacity-95 p-4 md:p-8"
+                    className="w-full h-full object-contain mix-blend-multiply opacity-95 p-8"
                   />
                   
                   {/* Left Menu - Default State */}
-                  <div className="absolute top-12 left-6 md:left-12 flex flex-col gap-3 z-20">
+                  <div className="absolute top-12 left-12 flex flex-col gap-3 z-20">
                     {layoutsData.map((layout) => (
                       <button
                         key={layout.id}
                         onClick={() => setActiveLayoutId(layout.id)}
-                        className="bg-black text-white text-[13px] md:text-[15px] font-bold px-6 py-2.5 min-w-[160px] md:min-w-[200px] border border-white/20 hover:bg-gray-800 transition-colors shadow-lg"
+                        className="bg-black text-white text-[15px] font-bold px-6 py-2.5 min-w-[200px] border border-white/20 hover:bg-gray-800 transition-colors shadow-lg"
                       >
                         {layout.name}
                       </button>
@@ -157,18 +220,18 @@ export const MasterPlan: React.FC = () => {
                   {/* Back Button */}
                   <button 
                     onClick={() => setActiveLayoutId(null)}
-                    className="absolute top-8 left-6 md:left-12 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white/20 transition-colors z-30 shadow-lg"
+                    className="absolute top-8 left-12 w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white/20 transition-colors z-30 shadow-lg"
                   >
                     <FaChevronLeft className="mr-1" />
                   </button>
 
                   {/* Left Menu - Detail State */}
-                  <div className="absolute top-24 left-6 md:left-12 flex flex-col gap-3 z-20">
+                  <div className="absolute top-24 left-12 flex flex-col gap-3 z-20">
                     {layoutsData.map((layout) => (
                       <button
                         key={layout.id}
                         onClick={() => setActiveLayoutId(layout.id)}
-                        className={`text-[13px] md:text-[15px] font-bold px-6 py-2.5 min-w-[160px] md:min-w-[200px] border shadow-lg transition-colors ${
+                        className={`text-[15px] font-bold px-6 py-2.5 min-w-[200px] border shadow-lg transition-colors ${
                           activeLayoutId === layout.id 
                             ? 'bg-black text-white border-white/30' 
                             : 'bg-black text-white border-white/20 hover:bg-gray-800'
@@ -180,7 +243,7 @@ export const MasterPlan: React.FC = () => {
                   </div>
 
                   {/* Bottom Left Thumbnail */}
-                  <div className="absolute bottom-6 left-6 md:left-12 z-20 border-[3px] border-white shadow-2xl bg-white w-[200px] md:w-[280px]">
+                  <div className="absolute bottom-6 left-12 z-20 border-[3px] border-white shadow-2xl bg-white w-[280px]">
                     <img 
                       src={activeLayout.thumbnail} 
                       alt={`${activeLayout.name} Layout Plan`} 
@@ -189,8 +252,8 @@ export const MasterPlan: React.FC = () => {
                   </div>
 
                   {/* Bottom Right Details Box */}
-                  <div className="absolute bottom-6 right-6 md:right-12 z-20 bg-black/60 backdrop-blur-md border border-white/20 rounded-md p-6 max-w-sm md:max-w-md shadow-2xl">
-                    <h3 className="text-white text-xl md:text-2xl font-bold mb-3">
+                  <div className="absolute bottom-6 right-12 z-20 bg-black/60 backdrop-blur-md border border-white/20 rounded-md p-6 max-w-md shadow-2xl">
+                    <h3 className="text-white text-2xl font-bold mb-3">
                       {activeLayout.name}
                     </h3>
                     <p className="text-white/90 text-sm leading-relaxed">

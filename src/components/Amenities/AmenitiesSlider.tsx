@@ -86,15 +86,15 @@ export const AmenitiesSlider: React.FC = () => {
   const currentAmenity = amenitiesData[activeIndex];
 
   return (
-    <section className="py-20 bg-[#fafafa]">
+    <section className="py-12 sm:py-20 bg-[#fafafa]">
       <Container>
         {/* Centered Heading */}
-        <h2 className="text-3xl md:text-[40px] font-serif text-center mb-16 tracking-widest text-gray-900 uppercase">
+        <h2 className="text-2xl sm:text-3xl md:text-[40px] font-serif text-center mb-8 sm:mb-16 tracking-widest text-gray-900 uppercase">
           Amenities
         </h2>
 
         {/* Main Slider Container */}
-        <div className="relative w-full mx-auto h-[450px] md:h-[600px] overflow-hidden bg-black shadow-lg">
+        <div className="relative w-full mx-auto h-[480px] sm:h-[520px] md:h-[600px] overflow-hidden bg-black shadow-lg rounded-xl md:rounded-none">
           
           <AnimatePresence mode="wait">
             <motion.img
@@ -110,7 +110,7 @@ export const AmenitiesSlider: React.FC = () => {
           </AnimatePresence>
 
           {/* Left Overlay Content */}
-          <div className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[50%] bg-gradient-to-r from-black/90 via-black/60 to-transparent p-8 md:p-16 flex flex-col justify-center">
+          <div className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[50%] bg-gradient-to-r from-black/95 via-black/75 to-transparent p-6 sm:p-10 md:p-16 flex flex-col justify-center pb-20 sm:pb-20">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -119,39 +119,47 @@ export const AmenitiesSlider: React.FC = () => {
                 exit={{ opacity: 0, x: 30 }}
                 transition={{ duration: 0.4 }}
               >
-                <h3 className="text-[26px] md:text-[34px] font-bold text-white mb-4 uppercase leading-tight font-serif tracking-wide">
+                <h3 className="text-xl sm:text-2xl md:text-[34px] font-bold text-white mb-3 sm:mb-4 uppercase leading-tight font-serif tracking-wide">
                   {currentAmenity.title}
                 </h3>
-                <p className="text-white/95 text-[14.5px] leading-relaxed mb-8 max-w-md">
+                <p className="text-white/95 text-xs sm:text-sm md:text-[14.5px] leading-relaxed mb-5 sm:mb-8 max-w-md line-clamp-4 sm:line-clamp-none">
                   {currentAmenity.description}
                 </p>
-                <button className="bg-white text-black font-bold px-7 py-2.5 rounded shadow hover:bg-gray-100 transition-colors text-sm">
+                <button 
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-enquire-modal'))}
+                  className="bg-white text-black font-bold px-5 py-2 sm:px-7 sm:py-2.5 rounded shadow hover:bg-gray-100 transition-colors text-xs sm:text-sm"
+                >
                   {currentAmenity.button}
                 </button>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Download Brochure Button at Bottom Center */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
-            <button className="bg-gradient-to-r from-[#8ac440] to-[#5bb1d9] text-white px-7 py-2.5 rounded-full font-bold shadow-lg hover:opacity-90 transition-opacity flex items-center gap-2 text-sm tracking-wide">
-              Download Brochure →
+          {/* Download Brochure Button at Bottom Left / Center */}
+          <div className="absolute bottom-4 left-4 sm:left-1/2 sm:-translate-x-1/2 z-20">
+            <button 
+              onClick={() => window.dispatchEvent(new CustomEvent('open-enquire-modal'))}
+              className="bg-gradient-to-r from-[#8ac440] to-[#5bb1d9] text-white px-4 py-2 sm:px-7 sm:py-2.5 rounded-full font-bold shadow-lg hover:opacity-90 transition-opacity flex items-center gap-1.5 text-xs sm:text-sm tracking-wide"
+            >
+              <span>Brochure</span> <span className="hidden sm:inline">→</span>
             </button>
           </div>
 
           {/* Navigation Arrows at Bottom Right */}
-          <div className="absolute bottom-6 right-6 z-20 flex gap-3">
+          <div className="absolute bottom-4 right-4 sm:right-6 z-20 flex gap-2 sm:gap-3">
             <button 
               onClick={handlePrev}
-              className="w-10 h-10 rounded bg-white text-black flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-white text-black flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
+              aria-label="Previous Amenity"
             >
-              <FaChevronLeft className="w-4 h-4" />
+              <FaChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
             </button>
             <button 
               onClick={handleNext}
-              className="w-10 h-10 rounded bg-white text-black flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded bg-white text-black flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
+              aria-label="Next Amenity"
             >
-              <FaChevronRight className="w-4 h-4" />
+              <FaChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
             </button>
           </div>
 

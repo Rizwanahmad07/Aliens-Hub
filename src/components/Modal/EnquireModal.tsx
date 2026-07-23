@@ -13,18 +13,19 @@ export const EnquireModal: React.FC = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-      <div className="bg-white w-full max-w-xl rounded shadow-2xl relative animate-in zoom-in-95 duration-300 overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-3 sm:p-4 animate-in fade-in duration-300">
+      <div className="bg-white w-full max-w-xl rounded-xl sm:rounded shadow-2xl relative animate-in zoom-in-95 duration-300 max-h-[90vh] overflow-y-auto">
         
         {/* Close Button */}
         <button 
           onClick={() => setIsOpen(false)}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors z-10"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 hover:text-gray-800 transition-colors z-10 bg-white shadow-sm"
+          aria-label="Close Modal"
         >
           <FaTimes size={12} />
         </button>
 
-        <div className="px-10 py-12">
+        <div className="px-5 py-8 sm:px-10 sm:py-12">
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="text-[22px] font-semibold text-gray-900 tracking-wide mb-3">

@@ -18,7 +18,7 @@ export const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative overflow-x-hidden">
       <Navbar />
       <main className="flex-grow">
         <Outlet />
@@ -31,11 +31,12 @@ export const MainLayout: React.FC = () => {
       {/* Sticky Enquire Side Tab */}
       <button 
         onClick={openModal}
-        className="fixed right-0 top-1/2 transform -translate-y-1/2 bg-gradient-to-b from-[#5bb1d9] to-[#8ac440] text-white px-2 py-4 rounded-l-md shadow-lg z-40 flex flex-col items-center gap-2 hover:opacity-90 transition-opacity"
+        className="fixed right-0 top-[60%] sm:top-1/2 transform -translate-y-1/2 bg-gradient-to-b from-[#5bb1d9] to-[#8ac440] text-white px-1.5 sm:px-2 py-3 sm:py-4 rounded-l-md shadow-lg z-40 flex flex-col items-center gap-1 hover:opacity-90 transition-opacity opacity-90 hover:opacity-100"
         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+        aria-label="Enquire"
       >
-        <FaRegEdit className="w-4 h-4 mb-1 rotate-90" />
-        <span className="font-semibold tracking-widest text-[13px] uppercase">Enquire</span>
+        <FaRegEdit className="w-3 h-3 sm:w-4 sm:h-4 mb-1 rotate-90" />
+        <span className="font-semibold tracking-widest text-[10px] sm:text-[13px] uppercase">Enquire</span>
       </button>
     </div>
   );

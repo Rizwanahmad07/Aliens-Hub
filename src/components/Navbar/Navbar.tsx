@@ -40,20 +40,20 @@ export const Navbar: React.FC = () => {
 
   return (
     <div
-      className={`fixed w-full z-50 top-4 px-4 md:px-8 transition-all duration-500 ${
+      className={`fixed w-full z-50 top-2 sm:top-4 px-2 sm:px-4 md:px-8 transition-all duration-500 ${
         hidden ? '-translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
       }`}
     >
-      <nav className="max-w-7xl mx-auto bg-gradient-to-r from-[#121316]/95 via-[#1a1c22]/95 to-[#121316]/95 backdrop-blur-lg rounded-full px-6 py-2.5 flex justify-between items-center shadow-[0_8px_32px_rgba(0,0,0,0.25)] border border-white/15">
+      <nav className="max-w-7xl mx-auto bg-gradient-to-r from-[#121316]/95 via-[#1a1c22]/95 to-[#121316]/95 backdrop-blur-lg rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex justify-between items-center shadow-[0_8px_32px_rgba(0,0,0,0.25)] border border-white/15">
 
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-3">
+        <Link to="/" className="flex items-center space-x-2.5">
           <img
             src={logoSvg}
             alt="Aliens Hub Logo"
-            className="h-10 w-auto object-contain"
+            className="h-8 sm:h-10 w-auto object-contain"
           />
-          <span className="text-white font-serif font-bold tracking-widest text-lg hidden sm:block">ALIENS HUB</span>
+          <span className="text-white font-serif font-bold tracking-widest text-sm sm:text-lg">ALIENS HUB</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -80,26 +80,27 @@ export const Navbar: React.FC = () => {
         <div className="lg:hidden flex items-center">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white hover:text-[#8ac440] focus:outline-none"
+            className="text-white hover:text-[#8ac440] focus:outline-none p-1.5"
+            aria-label="Toggle Navigation Menu"
           >
-            {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+            {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
         </div>
       </nav>
 
       {/* Mobile Nav */}
       <div
-        className={`lg:hidden absolute top-full left-4 right-4 mt-2 bg-[#1a1c22]/95 backdrop-blur-md rounded-2xl shadow-xl transition-all duration-300 ease-in-out border border-white/10 ${
-          isOpen ? 'max-h-96 opacity-100 visible' : 'max-h-0 opacity-0 invisible'
-        } overflow-hidden`}
+        className={`lg:hidden absolute top-full left-2 right-2 sm:left-4 sm:right-4 mt-2 bg-[#1a1c22]/95 backdrop-blur-md rounded-2xl shadow-xl transition-all duration-300 ease-in-out border border-white/10 ${
+          isOpen ? 'max-h-[80vh] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+        } overflow-y-auto`}
       >
-        <div className="px-4 py-4 space-y-2">
+        <div className="px-4 py-4 space-y-1">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.path}
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-2 text-base font-semibold text-white hover:text-[#8ac440] rounded-lg hover:bg-white/5"
+              className="block px-4 py-2.5 text-base font-semibold text-white hover:text-[#8ac440] rounded-lg hover:bg-white/5"
             >
               {link.name}
             </a>
@@ -109,7 +110,7 @@ export const Navbar: React.FC = () => {
               window.dispatchEvent(new CustomEvent('open-enquire-modal'));
               setIsOpen(false);
             }}
-            className="w-full flex items-center justify-center space-x-2 px-6 py-3 mt-4 rounded-full bg-gradient-to-r from-[#5bb1d9] to-[#60b6cc] text-white font-semibold"
+            className="w-full flex items-center justify-center space-x-2 px-6 py-3 mt-3 rounded-full bg-gradient-to-r from-[#5bb1d9] to-[#60b6cc] text-white font-semibold text-sm"
           >
             <span>Schedule a Visit</span>
             <FaArrowRight className="w-4 h-4" />
